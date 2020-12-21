@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Syncfusion.WinForms.SmithChart;
 using System.Collections.ObjectModel;
 
 // Giao tiếp qua Serial
@@ -15,8 +14,6 @@ using System.IO;
 using System.IO.Ports;
 using System.Xml;
 
-// Thêm ZedGraph
-using ZedGraph;
 
 namespace AppVna
 {
@@ -50,54 +47,12 @@ namespace AppVna
         {
             InitializeComponent();
             
-            //real impedance part 
-            LineSeries series = new LineSeries();
-            series.MarkerVisible = true;
-            series.LegendText = "real";
-            series.DataSource = vm.Trace1;
-            series.ResistanceMember = "Resistance";
-            series.ReactanceMember = "Reactance";
-            series.TooltipVisible = true;
-            sfSmithChart1.Series.Add(series);
-
-            // complex impedance part
-            LineSeries series1 = new LineSeries();
-            series1.MarkerVisible = true;
-            series1.LegendText = "complex";
-            series1.DataSource = vm.Trace2;
-            series1.ResistanceMember = "Resistance";
-            series1.ReactanceMember = "Reactance";
-            series1.TooltipVisible = true;
-            sfSmithChart1.Series.Add(series1);
-
-            sfSmithChart1.RadialAxis.MinorGridlinesVisible = true;
-            sfSmithChart1.HorizontalAxis.MinorGridlinesVisible = true;
-
-            sfSmithChart1.ThemeName = "Office2016White";
-            sfSmithChart1.Legend.Visible = true;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             comboBox1.DataSource = SerialPort.GetPortNames(); // Lấy nguồn cho comboBox là tên của cổng COM
             comboBox1.Text = Properties.Settings.Default.ComName; // Lấy ComName đã làm ở bước 5 cho comboBox
             
-            // Khởi tạo ZedGraph
-            GraphPane myPane = zedGraphControl1.GraphPane;
-            myPane.Title.Text = "Đồ thị dữ liệu theo thời gian";
-            myPane.XAxis.Title.Text = "Thời gian (s)";
-            myPane.YAxis.Title.Text = "Dữ liệu";
-
-            RollingPointPairList list = new RollingPointPairList(60000);
-            LineItem curve = myPane.AddCurve("Dữ liệu", list, Color.Red, SymbolType.None);
-
-            myPane.XAxis.Scale.Min = 0;
-            myPane.XAxis.Scale.Max = 30;
-            myPane.XAxis.Scale.MinorStep = 1;
-            myPane.XAxis.Scale.MajorStep = 5;
-            myPane.YAxis.Scale.Min = -100;
-            myPane.YAxis.Scale.Max = 100;
-
-            myPane.AxisChange();
         }
         // Hàm Tick bắt sự kiện cổng Serial mở hay không
         private void timer1_Tick(object sender, EventArgs e)
@@ -109,8 +64,6 @@ namespace AppVna
             else if (serialPort1.IsOpen)
             {
                 progressBar1.Value = 100;
-                Draw();
-                Data_Listview();
                 status = 0;
             }
         }
@@ -155,105 +108,10 @@ namespace AppVna
 
 
 
-        // Hiển thị dữ liệu trong ListView
-        private void Data_Listview()
-        {
-            if (status == 0)
-                return;
-            else
-            {
-                ListViewItem item = new ListViewItem(realtime.ToString()); // Gán biến realtime vào cột đầu tiên của ListView
-                item.SubItems.Add(datas.ToString());
-                listView1.Items.Add(item); // Gán biến datas vào cột tiếp theo của ListView
-                                           // Không nên gán string SDatas vì khi xuất dữ liệu sang Excel sẽ là dạng string, không thực hiện các phép toán được
-
-                listView1.Items[listView1.Items.Count - 1].EnsureVisible(); // Hiện thị dòng được gán gần nhất ở ListView, tức là mình cuộn ListView theo dữ liệu gần nhất đó
-            }
-        }
-
-
-
-        // Vẽ đồ thị
-        private void Draw()
-        {
-
-            if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
-                return;
-
-            LineItem curve = zedGraphControl1.GraphPane.CurveList[0] as LineItem;
-
-            if (curve == null)
-                return;
-
-            IPointListEdit list = curve.Points as IPointListEdit;
-
-            if (list == null)
-                return;
-
-            list.Add(realtime, datas); // Thêm điểm trên đồ thị
-
-            Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
-            Scale yScale = zedGraphControl1.GraphPane.YAxis.Scale;
-
-            // Tự động Scale theo trục x
-            if (realtime > xScale.Max - xScale.MajorStep)
-            {
-                xScale.Max = realtime + xScale.MajorStep;
-                xScale.Min = xScale.Max - 30;
-            }
-
-            // Tự động Scale theo trục y
-            if (datas > yScale.Max - yScale.MajorStep)
-            {
-                yScale.Max = datas + yScale.MajorStep;
-            }
-            else if (datas < yScale.Min + yScale.MajorStep)
-            {
-                yScale.Min = datas - yScale.MajorStep;
-            }
-
-            zedGraphControl1.AxisChange();
-            zedGraphControl1.Invalidate();
-            zedGraphControl1.Refresh();
-        }
-
-
-        // Xóa đồ thị
-        private void ClearZedGraph()
-        {
-            zedGraphControl1.GraphPane.CurveList.Clear(); // Xóa đường
-            zedGraphControl1.GraphPane.GraphObjList.Clear(); // Xóa đối tượng
-
-            zedGraphControl1.AxisChange();
-            zedGraphControl1.Invalidate();
-
-            GraphPane myPane = zedGraphControl1.GraphPane;
-            myPane.Title.Text = "Đồ thị dữ liệu theo thời gian";
-            myPane.XAxis.Title.Text = "Thời gian (s)";
-            myPane.YAxis.Title.Text = "Dữ liệu";
-
-            RollingPointPairList list = new RollingPointPairList(60000);
-            LineItem curve = myPane.AddCurve("Dữ liệu", list, Color.Red, SymbolType.None);
-
-            myPane.XAxis.Scale.Min = 0;
-            myPane.XAxis.Scale.Max = 30;
-            myPane.XAxis.Scale.MinorStep = 1;
-            myPane.XAxis.Scale.MajorStep = 5;
-            myPane.YAxis.Scale.Min = -100;
-            myPane.YAxis.Scale.Max = 100;
-
-            zedGraphControl1.AxisChange();
-        }
-
-
          
         // Hàm xóa dữ liệu
         private void ResetValue()
         {
-            realtime = 0;
-            datas = 0;
-            SDatas = String.Empty;
-            SRealTime = String.Empty;
             status = 0; // Chuyển status về 0
         }
 
@@ -386,9 +244,6 @@ namespace AppVna
                         serialPort1.Write("2"); //Gửi ký tự "2" qua Serial
                         listView1.Items.Clear(); // Xóa listview
 
-                        //Xóa đường trong đồ thị
-                        ClearZedGraph();
-
                         //Xóa dữ liệu trong Form
                         ResetValue();
                     }
@@ -400,99 +255,6 @@ namespace AppVna
                 MessageBox.Show("Bạn không thể xóa khi chưa kết nối với thiết bị", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         
-
-        // Đổi màu line Smith Chart
-        private void PaletteChanged(object sender, EventArgs e)
-        {
-            var combo = sender as ComboBox;
-            if (combo.SelectedIndex == 0)
-                sfSmithChart1.ColorModel.Palette = Syncfusion.WinForms.SmithChart.ChartColorPalette.Metro;
-            else if (combo.SelectedIndex == 1)
-                sfSmithChart1.ColorModel.Palette = Syncfusion.WinForms.SmithChart.ChartColorPalette.WarmCold;
-            else if (combo.SelectedIndex == 2)
-                sfSmithChart1.ColorModel.Palette = Syncfusion.WinForms.SmithChart.ChartColorPalette.Triad;
-            else if (combo.SelectedIndex == 3)
-                sfSmithChart1.ColorModel.Palette = Syncfusion.WinForms.SmithChart.ChartColorPalette.Colorful;
-            else if (combo.SelectedIndex == 4)
-                sfSmithChart1.ColorModel.Palette = Syncfusion.WinForms.SmithChart.ChartColorPalette.Nature;
-        }
-
-
-        // Chú thích cho Smith Chart
-        private void LegendPosition(object sender, EventArgs e)
-        {
-            var combo = sender as ComboBox;
-            if (combo.SelectedIndex == 0)
-                sfSmithChart1.Legend.DockPosition = Syncfusion.WinForms.SmithChart.ChartDockPosition.Top;
-            else if (combo.SelectedIndex == 1)
-                sfSmithChart1.Legend.DockPosition = Syncfusion.WinForms.SmithChart.ChartDockPosition.Left;
-            else if (combo.SelectedIndex == 2)
-                sfSmithChart1.Legend.DockPosition = Syncfusion.WinForms.SmithChart.ChartDockPosition.Right;
-            else if (combo.SelectedIndex == 3)
-                sfSmithChart1.Legend.DockPosition = Syncfusion.WinForms.SmithChart.ChartDockPosition.Bottom;
-            else
-                sfSmithChart1.Legend.DockPosition = Syncfusion.WinForms.SmithChart.ChartDockPosition.Floating;
-        }
-
-
-        private void RadialMinor(object sender, EventArgs e)
-        {
-            var check = sender as CheckBox;
-            if (check.Checked)
-                sfSmithChart1.RadialAxis.MinorGridlinesVisible = true;
-            else
-                sfSmithChart1.RadialAxis.MinorGridlinesVisible = false;
-        }
-
-
-        private void HorizontalMinor(object sender, EventArgs e)
-        {
-            var check = sender as CheckBox;
-            if (check.Checked)
-                sfSmithChart1.HorizontalAxis.MinorGridlinesVisible = true;
-            else
-                sfSmithChart1.HorizontalAxis.MinorGridlinesVisible = false;
-        }
-
-
-        private void Radius(object sender, EventArgs e)
-        {
-            var combo = sender as ComboBox;
-            if (combo.SelectedIndex == 0)
-                sfSmithChart1.Radius = 0.1f;
-            else if (combo.SelectedIndex == 1)
-                sfSmithChart1.Radius = 0.2f;
-            else if (combo.SelectedIndex == 2)
-                sfSmithChart1.Radius = 0.3f;
-            else if (combo.SelectedIndex == 3)
-                sfSmithChart1.Radius = 0.4f;
-            else if (combo.SelectedIndex == 4)
-                sfSmithChart1.Radius = 0.5f;
-            else if (combo.SelectedIndex == 5)
-                sfSmithChart1.Radius = 0.6f;
-            else if (combo.SelectedIndex == 6)
-                sfSmithChart1.Radius = 0.7f;
-            else if (combo.SelectedIndex == 7)
-                sfSmithChart1.Radius = 0.8f;
-            else if (combo.SelectedIndex == 8)
-                sfSmithChart1.Radius = 0.9f;
-            else if (combo.SelectedIndex == 9)
-                sfSmithChart1.Radius = 1f;
-        }
-
-
-        private void VisualStyleChanged(object sender, EventArgs e)
-        {
-            var combo = sender as ComboBox;
-            if (combo.SelectedIndex == 0)
-                sfSmithChart1.ThemeName = "Office2016White";
-            else if (combo.SelectedIndex == 1)
-                sfSmithChart1.ThemeName = "Office2016DarkGray";
-            else if (combo.SelectedIndex == 2)
-                sfSmithChart1.ThemeName = "Office2016Colorful";
-            else
-                sfSmithChart1.ThemeName = "Office2016Black";
-        }
     }
 
 
