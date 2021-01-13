@@ -137,17 +137,5 @@ namespace AppVna
             }
         }
 
-
-
-
-        private void Write_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(slave_address.Text);
-        }
-        private void Test_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
