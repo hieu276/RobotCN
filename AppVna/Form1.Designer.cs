@@ -45,14 +45,14 @@
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
-            this.button2 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -193,6 +193,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Cài đặt";
             this.button1.UseVisualStyleBackColor = true;
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -211,22 +212,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
-            // progressBar3
-            // 
-            this.progressBar3.Location = new System.Drawing.Point(256, 382);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(130, 23);
-            this.progressBar3.TabIndex = 3;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(153, 382);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Cài đặt";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // numericUpDown2
             // 
             this.numericUpDown2.Location = new System.Drawing.Point(261, 54);
@@ -239,6 +224,13 @@
             this.numericUpDown2.Size = new System.Drawing.Size(130, 22);
             this.numericUpDown2.TabIndex = 14;
             // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(256, 382);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(130, 23);
+            this.progressBar3.TabIndex = 3;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -247,6 +239,15 @@
             this.label4.Size = new System.Drawing.Size(79, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "Độ ẩm (%):";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(153, 382);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Cài đặt";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -266,19 +267,19 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Tốc độ (vòng/phút):";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(261, 173);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 22);
-            this.textBox1.TabIndex = 10;
-            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(261, 113);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(130, 22);
             this.textBox4.TabIndex = 9;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(261, 173);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(130, 22);
+            this.textBox1.TabIndex = 10;
             // 
             // ComName
             // 
