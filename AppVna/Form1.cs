@@ -27,6 +27,8 @@ namespace AppVna
         string humid_sensor = String.Empty; // humidity from sensor
 
         int status = 0; // status nhận gửi data 
+        // status  = 0: không đọc data từ serial
+        // status = 1: đọc data từ serial
         double temp = 0; //convert string thành số để hiển thị
         double humid = 0;
         // output điều khiển hệ thống
@@ -80,8 +82,6 @@ namespace AppVna
 
                 double.TryParse(temp_sensor, out temp); // Chuyển đổi sang kiểu double
                 double.TryParse(humid_sensor, out humid);
-
-                status = 1; // Bắt sự kiện xử lý xong chuỗi, đổi starus về 1 để hiển thị dữ liệu trong ListView và vẽ đồ thị
             }
             catch
             {
@@ -133,6 +133,7 @@ namespace AppVna
         {
             // gửi tín hiệu điều khiển
             DialogResult test;
+            servo_progress.Value = 0;
             int valve_address = 1; // địa chỉ slave valve, fix cứng
             string text;
             percent_open = valve_control_updown.Value;
@@ -147,16 +148,26 @@ namespace AppVna
             else text = valve_address.ToString() + percent_open.ToString();
             if (serialPort1.IsOpen)
             {
-                int i;
                 foreach (char ch in text)
                 {
-                    serialPort1.WriteLine(ch.ToString());
+                    try
+                    {
+                        serialPort1.WriteLine(ch.ToString());
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Lỗi trong quá trình truyền tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+                valve_progress.Value = 100;
             }
             else
                 MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             test = MessageBox.Show(text);
-            // 
+            // hiển thị dữ liệu sensor
+            status = 1;
+            valve_humid.Text = humid.ToString();
+            valve_temp.Text = temp.ToString();
         }
 
         private void bt_setup_servo_Click(object sender, EventArgs e)
@@ -177,15 +188,26 @@ namespace AppVna
             else text = servo_address.ToString() + rotate_speed.ToString();
             if (serialPort1.IsOpen)
             {
-                int i;
                 foreach (char ch in text)
                 {
-                    serialPort1.WriteLine(ch.ToString());
+                    try
+                    {
+                        serialPort1.WriteLine(ch.ToString());
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Lỗi trong quá trình truyền tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+                servo_progress.Value = 100;
             }
             else
                 MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             test = MessageBox.Show(text);
+
+            // đọc dữ liệu cảm biến
+            servo_humid.Text = humid.ToString();
+            servo_temp.Text = humid.ToString();
         }
     }
 }
