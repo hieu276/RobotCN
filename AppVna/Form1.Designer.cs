@@ -35,28 +35,28 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.Valve = new System.Windows.Forms.GroupBox();
+            this.valve_control_updown = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.valve_humid = new System.Windows.Forms.TextBox();
+            this.valve_temp = new System.Windows.Forms.TextBox();
+            this.valve_progress = new System.Windows.Forms.ProgressBar();
+            this.bt_setup_valve = new System.Windows.Forms.Button();
+            this.Servo = new System.Windows.Forms.GroupBox();
+            this.servo_control_updown = new System.Windows.Forms.NumericUpDown();
+            this.servo_progress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bt_setup_servo = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.servo_temp = new System.Windows.Forms.TextBox();
+            this.servo_humid = new System.Windows.Forms.TextBox();
+            this.Valve.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valve_control_updown)).BeginInit();
+            this.Servo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.servo_control_updown)).BeginInit();
             this.SuspendLayout();
             // 
             // btConnect
@@ -71,7 +71,7 @@
             // 
             // btExit
             // 
-            this.btExit.Location = new System.Drawing.Point(938, 12);
+            this.btExit.Location = new System.Drawing.Point(730, 14);
             this.btExit.Name = "btExit";
             this.btExit.Size = new System.Drawing.Size(87, 26);
             this.btExit.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(175, 14);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(757, 23);
+            this.progressBar1.Size = new System.Drawing.Size(549, 23);
             this.progressBar1.TabIndex = 9;
             // 
             // serialPort1
@@ -107,35 +107,29 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // groupBox1
+            // Valve
             // 
-            this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.progressBar2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 67);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(483, 445);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.Valve.Controls.Add(this.valve_control_updown);
+            this.Valve.Controls.Add(this.label3);
+            this.Valve.Controls.Add(this.label2);
+            this.Valve.Controls.Add(this.label1);
+            this.Valve.Controls.Add(this.valve_humid);
+            this.Valve.Controls.Add(this.valve_temp);
+            this.Valve.Controls.Add(this.valve_progress);
+            this.Valve.Controls.Add(this.bt_setup_valve);
+            this.Valve.Location = new System.Drawing.Point(12, 67);
+            this.Valve.Name = "Valve";
+            this.Valve.Size = new System.Drawing.Size(386, 294);
+            this.Valve.TabIndex = 12;
+            this.Valve.TabStop = false;
+            this.Valve.Text = "Van";
             // 
-            // numericUpDown1
+            // valve_control_updown
             // 
-            this.numericUpDown1.DecimalPlaces = 1;
-            this.numericUpDown1.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown1.Location = new System.Drawing.Point(184, 57);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(130, 22);
-            this.numericUpDown1.TabIndex = 8;
+            this.valve_control_updown.Location = new System.Drawing.Point(184, 57);
+            this.valve_control_updown.Name = "valve_control_updown";
+            this.valve_control_updown.Size = new System.Drawing.Size(130, 22);
+            this.valve_control_updown.TabIndex = 8;
             // 
             // label3
             // 
@@ -164,95 +158,91 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Độ mở van (%):";
             // 
-            // textBox3
+            // valve_humid
             // 
-            this.textBox3.Location = new System.Drawing.Point(184, 176);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(130, 22);
-            this.textBox3.TabIndex = 4;
+            this.valve_humid.Location = new System.Drawing.Point(184, 176);
+            this.valve_humid.Name = "valve_humid";
+            this.valve_humid.Size = new System.Drawing.Size(130, 22);
+            this.valve_humid.TabIndex = 4;
             // 
-            // textBox2
+            // valve_temp
             // 
-            this.textBox2.Location = new System.Drawing.Point(184, 116);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(130, 22);
-            this.textBox2.TabIndex = 3;
+            this.valve_temp.Location = new System.Drawing.Point(184, 116);
+            this.valve_temp.Name = "valve_temp";
+            this.valve_temp.Size = new System.Drawing.Size(130, 22);
+            this.valve_temp.TabIndex = 3;
             // 
-            // progressBar2
+            // valve_progress
             // 
-            this.progressBar2.Location = new System.Drawing.Point(184, 382);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(130, 23);
-            this.progressBar2.TabIndex = 1;
+            this.valve_progress.Location = new System.Drawing.Point(184, 230);
+            this.valve_progress.Name = "valve_progress";
+            this.valve_progress.Size = new System.Drawing.Size(130, 23);
+            this.valve_progress.TabIndex = 1;
             // 
-            // button1
+            // bt_setup_valve
             // 
-            this.button1.Location = new System.Drawing.Point(81, 382);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Cài đặt";
-            this.button1.UseVisualStyleBackColor = true;
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bt_setup_valve.Location = new System.Drawing.Point(81, 230);
+            this.bt_setup_valve.Name = "bt_setup_valve";
+            this.bt_setup_valve.Size = new System.Drawing.Size(75, 23);
+            this.bt_setup_valve.TabIndex = 0;
+            this.bt_setup_valve.Text = "Cài đặt";
+            this.bt_setup_valve.UseVisualStyleBackColor = true;
+            this.bt_setup_valve.Click += new System.EventHandler(this.bt_setup_valve_Click);
             // 
-            // groupBox2
+            // Servo
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown2);
-            this.groupBox2.Controls.Add(this.progressBar3);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Location = new System.Drawing.Point(540, 67);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(485, 445);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.Servo.Controls.Add(this.servo_control_updown);
+            this.Servo.Controls.Add(this.servo_progress);
+            this.Servo.Controls.Add(this.label4);
+            this.Servo.Controls.Add(this.bt_setup_servo);
+            this.Servo.Controls.Add(this.label5);
+            this.Servo.Controls.Add(this.label6);
+            this.Servo.Controls.Add(this.servo_temp);
+            this.Servo.Controls.Add(this.servo_humid);
+            this.Servo.Location = new System.Drawing.Point(425, 67);
+            this.Servo.Name = "Servo";
+            this.Servo.Size = new System.Drawing.Size(392, 294);
+            this.Servo.TabIndex = 0;
+            this.Servo.TabStop = false;
+            this.Servo.Text = "Servo";
             // 
-            // numericUpDown2
+            // servo_control_updown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(261, 54);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(130, 22);
-            this.numericUpDown2.TabIndex = 14;
+            this.servo_control_updown.Location = new System.Drawing.Point(218, 57);
+            this.servo_control_updown.Name = "servo_control_updown";
+            this.servo_control_updown.Size = new System.Drawing.Size(130, 22);
+            this.servo_control_updown.TabIndex = 14;
             // 
-            // progressBar3
+            // servo_progress
             // 
-            this.progressBar3.Location = new System.Drawing.Point(256, 382);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(130, 23);
-            this.progressBar3.TabIndex = 3;
+            this.servo_progress.Location = new System.Drawing.Point(218, 233);
+            this.servo_progress.Name = "servo_progress";
+            this.servo_progress.Size = new System.Drawing.Size(130, 23);
+            this.servo_progress.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(107, 176);
+            this.label4.Location = new System.Drawing.Point(64, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "Độ ẩm (%):";
             // 
-            // button2
+            // bt_setup_servo
             // 
-            this.button2.Location = new System.Drawing.Point(153, 382);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Cài đặt";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bt_setup_servo.Location = new System.Drawing.Point(83, 233);
+            this.bt_setup_servo.Name = "bt_setup_servo";
+            this.bt_setup_servo.Size = new System.Drawing.Size(75, 23);
+            this.bt_setup_servo.TabIndex = 2;
+            this.bt_setup_servo.Text = "Cài đặt";
+            this.bt_setup_servo.UseVisualStyleBackColor = true;
+            this.bt_setup_servo.Click += new System.EventHandler(this.bt_setup_servo_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(107, 121);
+            this.label5.Location = new System.Drawing.Point(64, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 17);
             this.label5.TabIndex = 12;
@@ -261,31 +251,31 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(104, 59);
+            this.label6.Location = new System.Drawing.Point(61, 62);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 17);
+            this.label6.Size = new System.Drawing.Size(82, 17);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Tốc độ (vòng/phút):";
+            this.label6.Text = "Tốc độ (%):";
             // 
-            // textBox4
+            // servo_temp
             // 
-            this.textBox4.Location = new System.Drawing.Point(261, 113);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(130, 22);
-            this.textBox4.TabIndex = 9;
+            this.servo_temp.Location = new System.Drawing.Point(218, 116);
+            this.servo_temp.Name = "servo_temp";
+            this.servo_temp.Size = new System.Drawing.Size(130, 22);
+            this.servo_temp.TabIndex = 9;
             // 
-            // textBox1
+            // servo_humid
             // 
-            this.textBox1.Location = new System.Drawing.Point(261, 173);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 22);
-            this.textBox1.TabIndex = 10;
+            this.servo_humid.Location = new System.Drawing.Point(218, 176);
+            this.servo_humid.Name = "servo_humid";
+            this.servo_humid.Size = new System.Drawing.Size(130, 22);
+            this.servo_humid.TabIndex = 10;
             // 
             // ComName
             // 
-            this.ClientSize = new System.Drawing.Size(1037, 587);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(844, 409);
+            this.Controls.Add(this.Servo);
+            this.Controls.Add(this.Valve);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btExit);
@@ -293,12 +283,12 @@
             this.Name = "ComName";
             this.Text = "KSCLC Tin Hoc Cong Nghiep K61";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.Valve.ResumeLayout(false);
+            this.Valve.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valve_control_updown)).EndInit();
+            this.Servo.ResumeLayout(false);
+            this.Servo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.servo_control_updown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,23 +300,23 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         public System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Valve;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ProgressBar progressBar3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.TextBox valve_humid;
+        private System.Windows.Forms.TextBox valve_temp;
+        private System.Windows.Forms.ProgressBar valve_progress;
+        private System.Windows.Forms.Button bt_setup_valve;
+        private System.Windows.Forms.GroupBox Servo;
+        private System.Windows.Forms.ProgressBar servo_progress;
+        private System.Windows.Forms.Button bt_setup_servo;
+        private System.Windows.Forms.NumericUpDown valve_control_updown;
+        private System.Windows.Forms.NumericUpDown servo_control_updown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox servo_humid;
+        private System.Windows.Forms.TextBox servo_temp;
     }
 }

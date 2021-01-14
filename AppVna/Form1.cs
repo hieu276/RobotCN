@@ -30,8 +30,8 @@ namespace AppVna
         double temp = 0; //convert string thành số để hiển thị
         double humid = 0;
         // output điều khiển hệ thống
-        double percent_rotate = 0; // % motor rotate rate 
-        double percent_open = 0;// % valve open
+        decimal rotate_speed = 0; //motor rotate rate (rps)
+        decimal percent_open = 0;// % valve open
 
 
 
@@ -89,14 +89,6 @@ namespace AppVna
             }
         }
 
-
-
-
-
-
-
-
-
         // Sự kiện nhấn nút btConnect
         private void btConnect_Click(object sender, EventArgs e)
         {
@@ -137,5 +129,63 @@ namespace AppVna
             }
         }
 
+        private void bt_setup_valve_Click(object sender, EventArgs e)
+        {
+            // gửi tín hiệu điều khiển
+            DialogResult test;
+            int valve_address = 1; // địa chỉ slave valve, fix cứng
+            string text;
+            percent_open = valve_control_updown.Value;
+            if (percent_open < 10) 
+            {
+                text = valve_address.ToString() + "00" + percent_open.ToString();
+            }
+            else if (percent_open < 100)
+            {
+                text = valve_address.ToString() + "0" + percent_open.ToString();
+            }    
+            else text = valve_address.ToString() + percent_open.ToString();
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                foreach (char ch in text)
+                {
+                    serialPort1.WriteLine(ch.ToString());
+                }
+            }
+            else
+                MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            test = MessageBox.Show(text);
+            // 
+        }
+
+        private void bt_setup_servo_Click(object sender, EventArgs e)
+        {
+            // gửi tín hiệu điều khiển
+            DialogResult test;
+            int servo_address = 2; // địa chỉ slave valve, fix cứng
+            string text;
+            rotate_speed = servo_control_updown.Value;
+            if (rotate_speed < 10)
+            {
+                text = servo_address.ToString() + "00" + rotate_speed.ToString();
+            }
+            else if (percent_open < 100)
+            {
+                text = servo_address.ToString() + "0" + rotate_speed.ToString();
+            }
+            else text = servo_address.ToString() + rotate_speed.ToString();
+            if (serialPort1.IsOpen)
+            {
+                int i;
+                foreach (char ch in text)
+                {
+                    serialPort1.WriteLine(ch.ToString());
+                }
+            }
+            else
+                MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            test = MessageBox.Show(text);
+        }
     }
 }
