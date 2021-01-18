@@ -45,6 +45,7 @@
             this.valve_progress = new System.Windows.Forms.ProgressBar();
             this.bt_setup_valve = new System.Windows.Forms.Button();
             this.Servo = new System.Windows.Forms.GroupBox();
+            this.rotate_mode = new System.Windows.Forms.Label();
             this.servo_control_updown = new System.Windows.Forms.NumericUpDown();
             this.servo_progress = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.servo_temp = new System.Windows.Forms.TextBox();
             this.servo_humid = new System.Windows.Forms.TextBox();
+            this.rotate_mode_list = new System.Windows.Forms.ComboBox();
             this.Valve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.valve_control_updown)).BeginInit();
             this.Servo.SuspendLayout();
@@ -191,6 +193,8 @@
             // 
             // Servo
             // 
+            this.Servo.Controls.Add(this.rotate_mode_list);
+            this.Servo.Controls.Add(this.rotate_mode);
             this.Servo.Controls.Add(this.servo_control_updown);
             this.Servo.Controls.Add(this.servo_progress);
             this.Servo.Controls.Add(this.label4);
@@ -204,11 +208,20 @@
             this.Servo.Size = new System.Drawing.Size(392, 294);
             this.Servo.TabIndex = 0;
             this.Servo.TabStop = false;
-            this.Servo.Text = "Servo";
+            this.Servo.Text = "Động cơ 1 chiều";
+            // 
+            // rotate_mode
+            // 
+            this.rotate_mode.AutoSize = true;
+            this.rotate_mode.Location = new System.Drawing.Point(64, 76);
+            this.rotate_mode.Name = "rotate_mode";
+            this.rotate_mode.Size = new System.Drawing.Size(92, 17);
+            this.rotate_mode.TabIndex = 15;
+            this.rotate_mode.Text = "Chế độ quay:";
             // 
             // servo_control_updown
             // 
-            this.servo_control_updown.Location = new System.Drawing.Point(218, 57);
+            this.servo_control_updown.Location = new System.Drawing.Point(218, 29);
             this.servo_control_updown.Name = "servo_control_updown";
             this.servo_control_updown.Size = new System.Drawing.Size(130, 22);
             this.servo_control_updown.TabIndex = 14;
@@ -251,7 +264,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 62);
+            this.label6.Location = new System.Drawing.Point(64, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 17);
             this.label6.TabIndex = 11;
@@ -270,6 +283,18 @@
             this.servo_humid.Name = "servo_humid";
             this.servo_humid.Size = new System.Drawing.Size(130, 22);
             this.servo_humid.TabIndex = 10;
+            // 
+            // rotate_mode_list
+            // 
+            this.rotate_mode_list.FormattingEnabled = true;
+            this.rotate_mode_list.Items.AddRange(new object[] {
+            "Quay thuận",
+            "Quay ngược"});
+            this.rotate_mode_list.Location = new System.Drawing.Point(218, 69);
+            this.rotate_mode_list.Name = "rotate_mode_list";
+            this.rotate_mode_list.Size = new System.Drawing.Size(130, 24);
+            this.rotate_mode_list.TabIndex = 16;
+            this.rotate_mode_list.Text = "Chọn";
             // 
             // ComName
             // 
@@ -318,5 +343,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox servo_humid;
         private System.Windows.Forms.TextBox servo_temp;
+        private System.Windows.Forms.Label rotate_mode;
+        private System.Windows.Forms.ComboBox rotate_mode_list;
     }
 }

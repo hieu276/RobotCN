@@ -94,7 +94,7 @@ namespace AppVna
         {
             if (serialPort1.IsOpen)
             {
-                serialPort1.WriteLine("2"); //Gửi ký tự "2" qua Serial, tương ứng với state = 2
+                //serialPort1.WriteLine("2"); //Gửi ký tự "2" qua Serial, tương ứng với state = 2
                 serialPort1.Close();
                 btConnect.Text = "Kết nối";
                 btExit.Enabled = true;
@@ -134,7 +134,7 @@ namespace AppVna
             // gửi tín hiệu điều khiển
             DialogResult test;
             servo_progress.Value = 0;
-            int valve_address = 1; // địa chỉ slave valve, fix cứng
+            int valve_address = 2; // địa chỉ slave valve, điều khiển = servo, fix cứng
             string text;
             percent_open = valve_control_updown.Value;
             if (percent_open < 10) 
@@ -174,18 +174,25 @@ namespace AppVna
         {
             // gửi tín hiệu điều khiển
             DialogResult test;
-            int servo_address = 2; // địa chỉ slave valve, fix cứng
+            int servo_address = 1; // địa chỉ slave động cơ 1 chiều - motor, fix cứng
             string text;
             rotate_speed = servo_control_updown.Value;
             if (rotate_speed < 10)
             {
                 text = servo_address.ToString() + "00" + rotate_speed.ToString();
             }
-            else if (percent_open < 100)
+            else if (rotate_speed < 100)
             {
                 text = servo_address.ToString() + "0" + rotate_speed.ToString();
             }
             else text = servo_address.ToString() + rotate_speed.ToString();
+            if (rotate_mode_list.SelectedIndex == 0)
+            {
+                text = text + "0";
+            }
+            else if (rotate_mode_list.SelectedIndex == 1) {
+                text = text + "1";
+            }
             if (serialPort1.IsOpen)
             {
                 foreach (char ch in text)
@@ -193,6 +200,7 @@ namespace AppVna
                     try
                     {
                         serialPort1.WriteLine(ch.ToString());
+                        System.Threading.Thread.Sleep(50);
                     }
                     catch
                     {
@@ -201,7 +209,7 @@ namespace AppVna
                 }
                 servo_progress.Value = 100;
             }
-            else
+            else 
                 MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             test = MessageBox.Show(text);
 
@@ -209,5 +217,6 @@ namespace AppVna
             servo_humid.Text = humid.ToString();
             servo_temp.Text = humid.ToString();
         }
+
     }
 }
