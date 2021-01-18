@@ -135,7 +135,7 @@ namespace AppVna
         {
             servo_progress.Value = 0;
             // gửi tín hiệu điều khiển
-            DialogResult test;
+           // DialogResult test;
             servo_progress.Value = 0;
             int valve_address = 2; // địa chỉ slave valve, điều khiển = servo, fix cứng
             string text;
@@ -167,7 +167,8 @@ namespace AppVna
             }
             else
                 MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            test = MessageBox.Show(text);
+            System.Threading.Thread.Sleep(2000);
+            // test = MessageBox.Show(text);
             // hiển thị dữ liệu sensor
             status = 1;
             valve_humid.Text = humid.ToString();
@@ -178,7 +179,7 @@ namespace AppVna
         {
             servo_progress.Value = 0;
             // gửi tín hiệu điều khiển
-            DialogResult test;
+           // DialogResult test;
             int servo_address = 1; // địa chỉ slave động cơ 1 chiều - motor, fix cứng
             string text;
             rotate_speed = servo_control_updown.Value;
@@ -216,8 +217,8 @@ namespace AppVna
             }
             else 
                 MessageBox.Show("Kiểm tra lại kết nối", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            test = MessageBox.Show(text);
-
+            // test = MessageBox.Show(text);
+            System.Threading.Thread.Sleep(2000);
             // đọc dữ liệu cảm biến
             status = 1;
             servo_humid.Text = humid.ToString();
