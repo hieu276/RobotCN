@@ -71,9 +71,12 @@ namespace AppVna
         // Nhận và xử lý string gửi từ Serial
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            DialogResult test;
             try
             {
-                string[] received_data = serialPort1.ReadLine().Split('|'); // Đọc một dòng của Serial, cắt chuỗi khi gặp ký tự gạch đứng
+                string data = serialPort1.ReadLine(); // Đọc một dòng của Serial, cắt chuỗi khi gặp ký tự gạch đứng
+                string[] received_data = data.Split('|');
+                test = MessageBox.Show(data);
                 slave_id = received_data[0];
                 temp_sensor = received_data[1];
                 humid_sensor = received_data[2];
@@ -130,6 +133,7 @@ namespace AppVna
 
         private void bt_setup_valve_Click(object sender, EventArgs e)
         {
+            servo_progress.Value = 0;
             // gửi tín hiệu điều khiển
             DialogResult test;
             servo_progress.Value = 0;
@@ -152,6 +156,7 @@ namespace AppVna
                     try
                     {
                         serialPort1.Write(ch.ToString());
+                        System.Threading.Thread.Sleep(50);
                     }
                     catch
                     {
@@ -171,6 +176,7 @@ namespace AppVna
 
         private void bt_setup_servo_Click(object sender, EventArgs e)
         {
+            servo_progress.Value = 0;
             // gửi tín hiệu điều khiển
             DialogResult test;
             int servo_address = 1; // địa chỉ slave động cơ 1 chiều - motor, fix cứng
