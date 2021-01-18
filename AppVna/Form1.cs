@@ -74,10 +74,9 @@ namespace AppVna
             try
             {
                 string[] received_data = serialPort1.ReadLine().Split('|'); // Đọc một dòng của Serial, cắt chuỗi khi gặp ký tự gạch đứng
-                slave_id = received_data[2];
-                slave_status = received_data[3];
-                temp_sensor = received_data[4];
-                humid_sensor = received_data[5];
+                slave_id = received_data[1];
+                temp_sensor = received_data[2];
+                humid_sensor = received_data[3];
 
 
                 double.TryParse(temp_sensor, out temp); // Chuyển đổi sang kiểu double
