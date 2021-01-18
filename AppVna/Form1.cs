@@ -71,12 +71,12 @@ namespace AppVna
         // Nhận và xử lý string gửi từ Serial
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            DialogResult test;
+           // DialogResult test;
             try
             {
                 string data = serialPort1.ReadLine(); // Đọc một dòng của Serial, cắt chuỗi khi gặp ký tự gạch đứng
                 string[] received_data = data.Split('|');
-                test = MessageBox.Show(data);
+                //test = MessageBox.Show(data);
                 slave_id = received_data[0];
                 temp_sensor = received_data[1];
                 humid_sensor = received_data[2];
@@ -219,6 +219,7 @@ namespace AppVna
             test = MessageBox.Show(text);
 
             // đọc dữ liệu cảm biến
+            status = 1;
             servo_humid.Text = humid.ToString();
             servo_temp.Text = humid.ToString();
         }
