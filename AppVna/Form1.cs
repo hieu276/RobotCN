@@ -222,7 +222,7 @@ namespace AppVna
             // đọc dữ liệu cảm biến
             status = 1;
             servo_humid.Text = humid.ToString();
-            servo_temp.Text = humid.ToString();
+            servo_temp.Text = temp.ToString();
         }
 
     }
