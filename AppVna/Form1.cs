@@ -133,10 +133,9 @@ namespace AppVna
 
         private void bt_setup_valve_Click(object sender, EventArgs e)
         {
-            servo_progress.Value = 0;
             // gửi tín hiệu điều khiển
-           // DialogResult test;
-            servo_progress.Value = 0;
+            // DialogResult test;
+            valve_progress.Value = 0;
             int valve_address = 2; // địa chỉ slave valve, điều khiển = servo, fix cứng
             string text;
             percent_open = valve_control_updown.Value;
