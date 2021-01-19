@@ -45,6 +45,7 @@
             this.valve_progress = new System.Windows.Forms.ProgressBar();
             this.bt_setup_valve = new System.Windows.Forms.Button();
             this.Servo = new System.Windows.Forms.GroupBox();
+            this.rotate_mode_list = new System.Windows.Forms.ComboBox();
             this.rotate_mode = new System.Windows.Forms.Label();
             this.servo_control_updown = new System.Windows.Forms.NumericUpDown();
             this.servo_progress = new System.Windows.Forms.ProgressBar();
@@ -54,7 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.servo_temp = new System.Windows.Forms.TextBox();
             this.servo_humid = new System.Windows.Forms.TextBox();
-            this.rotate_mode_list = new System.Windows.Forms.ComboBox();
             this.Valve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.valve_control_updown)).BeginInit();
             this.Servo.SuspendLayout();
@@ -210,6 +210,18 @@
             this.Servo.TabStop = false;
             this.Servo.Text = "Động cơ 1 chiều";
             // 
+            // rotate_mode_list
+            // 
+            this.rotate_mode_list.FormattingEnabled = true;
+            this.rotate_mode_list.Items.AddRange(new object[] {
+            "Quay thuận",
+            "Quay ngược"});
+            this.rotate_mode_list.Location = new System.Drawing.Point(218, 69);
+            this.rotate_mode_list.Name = "rotate_mode_list";
+            this.rotate_mode_list.Size = new System.Drawing.Size(130, 24);
+            this.rotate_mode_list.TabIndex = 16;
+            this.rotate_mode_list.Text = "Chọn";
+            // 
             // rotate_mode
             // 
             this.rotate_mode.AutoSize = true;
@@ -283,18 +295,6 @@
             this.servo_humid.Name = "servo_humid";
             this.servo_humid.Size = new System.Drawing.Size(130, 22);
             this.servo_humid.TabIndex = 10;
-            // 
-            // rotate_mode_list
-            // 
-            this.rotate_mode_list.FormattingEnabled = true;
-            this.rotate_mode_list.Items.AddRange(new object[] {
-            "Quay thuận",
-            "Quay ngược"});
-            this.rotate_mode_list.Location = new System.Drawing.Point(218, 69);
-            this.rotate_mode_list.Name = "rotate_mode_list";
-            this.rotate_mode_list.Size = new System.Drawing.Size(130, 24);
-            this.rotate_mode_list.TabIndex = 16;
-            this.rotate_mode_list.Text = "Chọn";
             // 
             // ComName
             // 

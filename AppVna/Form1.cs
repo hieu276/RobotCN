@@ -29,8 +29,10 @@ namespace AppVna
         int status = 0; // status nhận gửi data 
         // status  = 0: không đọc data từ serial
         // status = 1: đọc data từ serial
-        double temp = 0; //convert string thành số để hiển thị
-        double humid = 0;
+        double temp_slave1 = 0; //convert string thành số để hiển thị
+        double humid_slave1 = 0;
+        double temp_slave2 = 0;
+        double humid_slave2 = 0;
         // output điều khiển hệ thống
         decimal rotate_speed = 0; //motor rotate rate (rps)
         decimal percent_open = 0;// % valve open
@@ -81,9 +83,17 @@ namespace AppVna
                 temp_sensor = received_data[1];
                 humid_sensor = received_data[2];
 
-
-                double.TryParse(temp_sensor, out temp); // Chuyển đổi sang kiểu double
-                double.TryParse(humid_sensor, out humid);
+                if (slave_id == "1")
+                {
+                    double.TryParse(temp_sensor, out temp_slave1); // Chuyển đổi sang kiểu double
+                    double.TryParse(humid_sensor, out humid_slave1);
+                }
+                else
+                {
+                    double.TryParse(temp_sensor, out temp_slave2); // Chuyển đổi sang kiểu double
+                    double.TryParse(humid_sensor, out humid_slave2);
+                }
+                
             }
             catch
             {
@@ -170,8 +180,8 @@ namespace AppVna
             // test = MessageBox.Show(text);
             // hiển thị dữ liệu sensor
             status = 1;
-            valve_humid.Text = humid.ToString();
-            valve_temp.Text = temp.ToString();
+            valve_humid.Text = humid_slave2.ToString();
+            valve_temp.Text = temp_slave2.ToString();
         }
 
         private void bt_setup_servo_Click(object sender, EventArgs e)
@@ -220,8 +230,8 @@ namespace AppVna
             System.Threading.Thread.Sleep(2000);
             // đọc dữ liệu cảm biến
             status = 1;
-            servo_humid.Text = humid.ToString();
-            servo_temp.Text = temp.ToString();
+            servo_humid.Text = humid_slave1.ToString();
+            servo_temp.Text = temp_slave1.ToString();
         }
 
     }

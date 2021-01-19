@@ -16,3 +16,36 @@ E:\Work\RobotCN\AppVna\obj\Debug\AppVna.csproj.CoreCompileInputs.cache
 E:\Work\RobotCN\AppVna\obj\Debug\AppVna.csproj.CopyComplete
 E:\Work\RobotCN\AppVna\obj\Debug\AppVna.exe
 E:\Work\RobotCN\AppVna\obj\Debug\AppVna.pdb
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\AppVna.exe.config
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\AppVna.exe
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\AppVna.pdb
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.Diagnostics.EventLog.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.Security.Principal.Windows.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.ServiceProcess.ServiceController.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\ZedGraph.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.Diagnostics.EventLog.xml
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.Security.Principal.Windows.xml
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\System.ServiceProcess.ServiceController.xml
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\ZedGraph.xml
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\de\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\es\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\fr\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\hu\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\it\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\ja\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\pt\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\ru\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\sk\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\sv\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\tr\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\zh-cn\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\bin\Debug\zh-tw\ZedGraph.resources.dll
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.csprojAssemblyReference.cache
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.csproj.ResolveComReference.cache
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.ComName.resources
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.Properties.Resources.resources
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.csproj.GenerateResource.cache
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.csproj.CoreCompileInputs.cache
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.csproj.CopyComplete
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.exe
+D:\Local Repos Visual Studio\Robot\RobotCN\AppVna\obj\Debug\AppVna.pdb
